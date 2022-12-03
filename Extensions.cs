@@ -1,4 +1,4 @@
-namespace AdventOfCode2021 {
+namespace AdventOfCode2022 {
     public static class Extensions {
         public static void CopyTo<T>(this T[,] from, T[,] to, int index0, int index1, Func<T, T> copyElement) {
             int fromLength0 = from.GetLength(0);

@@ -1,22 +1,30 @@
 ﻿using System;
-using AdventOfCode2021.Solutions;
+using AdventOfCode2022.Solutions;
 
-namespace AdventOfCode2021 {
-    public class Program {
-        private static readonly List<Solution> Puzzles = new List<Solution> { };
+namespace AdventOfCode2022
+{
+    public class Program
+    {
+        private static readonly List<Solution> Puzzles = new List<Solution> { new Day01() };
 
-        public static void Main() {
-            try {
+        public static void Main()
+        {
+            try
+            {
                 ExecuteSolution();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("Exception while executing solution!");
                 Console.WriteLine(e);
             }
         }
 
-        private static void ExecuteSolution() {
+        private static void ExecuteSolution()
+        {
             Console.WriteLine($"There are currently {Puzzles.Count} puzzle solutions registered.");
-            if (!Puzzles.Any()) {
+            if (!Puzzles.Any())
+            {
                 Console.WriteLine("No puzzle solutions yet. Exiting.");
                 return;
             }
@@ -25,17 +33,23 @@ namespace AdventOfCode2021 {
             Console.WriteLine("Enter an empty value to execute the last available puzzle solution.");
             string? puzzleId = Console.ReadLine();
             Solution puzzleSolution;
-            if (puzzleId == null || puzzleId == "") {
+            if (puzzleId == null || puzzleId == "")
+            {
                 puzzleSolution = Puzzles.Last();
-            } else if (int.TryParse(puzzleId, out int puzzleIdInt) && puzzleIdInt > 0 && puzzleIdInt <= Puzzles.Count) {
+            }
+            else if (int.TryParse(puzzleId, out int puzzleIdInt) && puzzleIdInt > 0 && puzzleIdInt <= Puzzles.Count)
+            {
                 puzzleSolution = Puzzles[puzzleIdInt - 1];
-            } else {
+            }
+            else
+            {
                 Console.WriteLine($"'{puzzleId}' is not a valid option!");
                 return;
             }
 
             Console.WriteLine($"The selected puzzle solution has {puzzleSolution.Stages.Count} stage solutions defined.");
-            if (!puzzleSolution.Stages.Any()) {
+            if (!puzzleSolution.Stages.Any())
+            {
                 Console.WriteLine("No stage solutions yet. Exiting.");
                 return;
             }
@@ -44,11 +58,16 @@ namespace AdventOfCode2021 {
             Console.WriteLine("Enter an empty value to execute the last available stage solution.");
             string? stageId = Console.ReadLine();
             Action stageSolution;
-            if (stageId == null || stageId == "") {
+            if (stageId == null || stageId == "")
+            {
                 stageSolution = puzzleSolution.Stages.Last();
-            } else if (int.TryParse(stageId, out int stageIdInt) && stageIdInt > 0 && stageIdInt <= puzzleSolution.Stages.Count) {
+            }
+            else if (int.TryParse(stageId, out int stageIdInt) && stageIdInt > 0 && stageIdInt <= puzzleSolution.Stages.Count)
+            {
                 stageSolution = puzzleSolution.Stages[stageIdInt - 1];
-            } else {
+            }
+            else
+            {
                 Console.WriteLine($"'{stageId}' is not a valid option!");
                 return;
             }
